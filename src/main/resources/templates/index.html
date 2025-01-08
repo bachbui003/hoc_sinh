@@ -109,6 +109,21 @@
         .btn-sm {
             padding: 5px 10px;
         }
+
+        .btn-export {
+            background-color: #28a745;  /* Màu nền xanh lá */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-export:hover {
+            background-color: #218838;  /* Màu nền khi hover */
+        }
+
     </style>
 </head>
 <body>
@@ -179,10 +194,14 @@
         </span>
     </div>
 
-    <a href="/students/addStudent" class="btn btn-success mt-4">Thêm học sinh</a>
-    <form action="/students/exportExcel" method="get">
-        <button type="submit">Xuất Excel</button>
-    </form>
+    <div class="d-flex justify-content-start mt-4">
+        <a href="/students/addStudent" class="btn btn-success mr-2" style="margin-right:15px ">Thêm học sinh</a>
+        <form action="/students/exportExcel" method="get">
+            <button type="submit" class="btn btn-success">Xuất Excel</button>
+        </form>
+    </div>
+
+
 
 </div>
 
