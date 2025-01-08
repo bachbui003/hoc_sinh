@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm học sinh mới</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        h2 {
+            color: #343a40;
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn {
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .form-control, .form-select {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .back-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mt-5">Thêm học sinh mới</h2>
+
+    <div class="form-container">
+        <!-- Form Thêm Học Sinh -->
+        <form th:action="@{/students}" method="post">
+            <!-- Trường họ tên -->
+            <div class="mb-3">
+                <label for="hoTen" class="form-label">Họ tên</label>
+                <input type="text" class="form-control" id="hoTen" name="hoTen" placeholder="Nhập họ tên học sinh" required>
+            </div>
+
+            <!-- Trường ngày sinh -->
+            <div class="mb-3">
+                <label for="ngaySinh" class="form-label">Ngày sinh</label>
+                <input type="date" class="form-control" id="ngaySinh" name="ngaySinh" required>
+            </div>
+
+            <!-- Trường giới tính -->
+            <div class="mb-3">
+                <label for="gioiTinh" class="form-label">Giới tính</label>
+                <input type="text" class="form-control" id="gioiTinh" name="gioiTinh" placeholder="Nhập giới tính" required>
+            </div>
+
+            <!-- Trường địa chỉ -->
+            <div class="mb-3">
+                <label for="diaChi" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" id="diaChi" name="diaChi" placeholder="Nhập địa chỉ" required>
+            </div>
+
+            <!-- Chọn lớp học -->
+            <div class="mb-3">
+                <label for="classroom" class="form-label">Chọn lớp học</label>
+                <select class="form-select" id="classroom" name="classroom" required>
+                    <option value="" disabled selected>Chọn lớp học</option>
+                    <th:block th:each="classroom : ${classrooms}">
+                        <option th:value="${classroom.id}" th:text="${classroom.name}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <!-- Chọn môn học -->
+            <div class="mb-3">
+                <label for="subject" class="form-label">Chọn môn học</label>
+                <select class="form-select" id="subject" name="subject" required>
+                    <option value="" disabled selected>Chọn môn học</option>
+                    <th:block th:each="subject : ${subjects}">
+                        <option th:value="${subject.id}" th:text="${subject.name}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <!-- Trường điểm -->
+            <div class="mb-3">
+                <label for="diem" class="form-label">Điểm</label>
+                <input type="number" class="form-control" id="diem" name="diem" step="0.1" min="0" max="10" placeholder="Nhập điểm" required>
+            </div>
+
+            <!-- Nút thêm học sinh -->
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Thêm học sinh</button>
+            </div>
+        </form>
+
+        <div class="back-link">
+            <a href="/students" class="btn btn-secondary">Quay lại danh sách học sinh</a>
+        </div>
+    </div>
+</div>
+
+<!-- Tùy chọn Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

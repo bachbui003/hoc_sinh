@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Sửa học sinh</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    h1 {
+      color: #343a40;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-label {
+      font-weight: bold;
+    }
+
+    .btn {
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .form-control {
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .form-group input {
+      width: 100%;
+    }
+
+    .form-group label {
+      margin-bottom: 5px;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 10px;
+      background-color: #2841a7;
+      color: white;
+      font-size: 16px;
+    }
+
+    .btn-submit:hover {
+      background-color: #082bd8;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .back-link a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Sửa học sinh</h1>
+
+  <div class="form-container">
+    <form th:action="@{/students/edit/{id}(id=${student.id})}" method="post">
+      <div class="form-group">
+        <label for="hoTen" class="form-label">Họ tên:</label>
+        <input type="text" id="hoTen" name="hoTen" th:value="${student.hoTen}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="id" class="form-label">ID:</label>
+        <input type="text" id="id" name="id" th:value="${student.id}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ngaySinh" class="form-label">Ngày sinh:</label>
+        <input type="date" id="ngaySinh" name="ngaySinh" th:value="${student.ngaySinh}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="gioiTinh" class="form-label">Giới tính:</label>
+        <input type="text" id="gioiTinh" name="gioiTinh" th:value="${student.gioiTinh}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="diaChi" class="form-label">Địa chỉ:</label>
+        <input type="text" id="diaChi" name="diaChi" th:value="${student.diaChi}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lop" class="form-label">Lớp:</label>
+        <input type="text" id="lop" name="lop" th:value="${student.lop}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="diem" class="form-label">Điểm:</label>
+        <input type="number" id="diem" name="diem" th:value="${student.diem}" step="0.1" min="0" max="10" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn-submit">Cập nhật học sinh</button>
+    </form>
+
+    <div class="back-link">
+      <a href="/students" class="btn btn-secondary">Quay lại danh sách học sinh</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
