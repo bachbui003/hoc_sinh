@@ -46,7 +46,7 @@
       padding: 10px;
     }
 
-    .form-group input {
+    .form-group input, .form-group select {
       width: 100%;
     }
 
@@ -105,7 +105,7 @@
 
       <div class="form-group">
         <label for="id" class="form-label">ID:</label>
-        <input type="text" id="id" name="id" th:value="${student.id}" class="form-control" required>
+        <input type="text" id="id" name="id" th:value="${student.id}" class="form-control" readonly>
       </div>
 
       <div class="form-group">
@@ -124,13 +124,28 @@
       </div>
 
       <div class="form-group">
-        <label for="lop" class="form-label">Lớp:</label>
-        <input type="text" id="lop" name="lop" th:value="${student.lop}" class="form-control" required>
+        <label for="classroom" class="form-label">Lớp:</label>
+        <select id="classroom" name="classroom.id" class="form-control" required>
+          <option th:each="classroom : ${classrooms}"
+                  th:value="${classroom.id}"
+                  th:text="${classroom.name}"
+                  th:selected="${classroom.id == student.classroom.id}"></option>
+        </select>
       </div>
 
       <div class="form-group">
-        <label for="diem" class="form-label">Điểm:</label>
-        <input type="number" id="diem" name="diem" th:value="${student.diem}" step="0.1" min="0" max="10" class="form-control" required>
+        <label for="maSinhVien" class="form-label">Mã sinh viên:</label>
+        <input type="text" id="maSinhVien" name="maSinhVien" th:value="${student.maSinhVien}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="subject" class="form-label">Môn học:</label>
+        <select id="subject" name="subject.id" class="form-control" required>
+          <option th:each="subject : ${subjects}"
+                  th:value="${subject.id}"
+                  th:text="${subject.name}"
+                  th:selected="${subject.id == student.subject.id}"></option>
+        </select>
       </div>
 
       <button type="submit" class="btn-submit">Cập nhật học sinh</button>

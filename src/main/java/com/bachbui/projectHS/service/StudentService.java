@@ -17,7 +17,7 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    // Lấy danh sách học sinh với phân trang và sắp xếp theo id
+    // Lấy danh sách học sinh với phân trang và sắp xếp theo ID
     public Page<Student> getAllStudents(Pageable pageable) {
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("id")));
         return studentRepository.findAll(sortedPageable);
@@ -40,11 +40,11 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    // Tìm kiếm học sinh theo tên hoặc ID
+    // Tìm kiếm học sinh theo tên, ID hoặc mã sinh viên
     public Page<Student> searchStudents(String searchTerm, Pageable pageable) {
-        if (searchTerm.matches("\\d+")) { // Nếu là ID
+        if (searchTerm.matches("\\d+")) { // Nếu là số (ID hoặc mã sinh viên)
             Long id = Long.parseLong(searchTerm);
-            return studentRepository.findById(id, pageable);
+            return studentRepository.findByIdOrMaSinhVien(id, searchTerm, pageable);
         } else { // Nếu là tên học sinh
             return studentRepository.findByHoTenContainingIgnoreCase(searchTerm, pageable);
         }
@@ -54,8 +54,14 @@ public class StudentService {
     public Page<Student> filterStudentsByDiem(double minDiem, Pageable pageable) {
         return studentRepository.findByDiemGreaterThanEqual(minDiem, pageable);
     }
+
+    // Lấy danh sách tất cả học sinh (không phân trang)
     public List<Student> getAllStudentsWithoutPagination() {
-        return studentRepository.findAll(); // Lấy tất cả học sinh từ cơ sở dữ liệu
+        return studentRepository.findAll();
     }
 
+    // Lọc học sinh theo mã sinh viên
+    public Page<Student> filterStudentsByMaSinhVien(String maSinhVien, Pageable pageable) {
+        return studentRepository.findByMaSinhVienContainingIgnoreCase(maSinhVien, pageable);
+    }
 }

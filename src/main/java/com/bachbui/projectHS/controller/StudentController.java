@@ -1,6 +1,8 @@
 package com.bachbui.projectHS.controller;
 
+import com.bachbui.projectHS.model.Classroom;
 import com.bachbui.projectHS.model.Student;
+import com.bachbui.projectHS.model.Subject;
 import com.bachbui.projectHS.service.ClassroomService;
 import com.bachbui.projectHS.service.SubjectService;
 import com.bachbui.projectHS.service.StudentService;
@@ -74,12 +76,21 @@ public class StudentController {
     // Show form to edit a student
     @GetMapping("/edit/{id}")
     public String showEditStudentForm(@PathVariable Long id, Model model) {
+        // Lấy thông tin sinh viên từ ID
         Student student = studentService.getStudentById(id);
-        model.addAttribute("classrooms", classroomService.getAllClassrooms());
-        model.addAttribute("subjects", subjectService.getAllSubjects());
+
+        // Lấy danh sách lớp học và môn học từ service
+        List<Classroom> classrooms = classroomService.getAllClassrooms();
+        List<Subject> subjects = subjectService.getAllSubjects();
+
+        // Thêm đối tượng vào model để hiển thị trong form
         model.addAttribute("student", student);
-        return "editStudent"; // Ensure the corresponding template exists
+        model.addAttribute("classrooms", classrooms);
+        model.addAttribute("subjects", subjects);
+
+        return "editStudent"; // Trả về view sửa học sinh
     }
+
 
     // Update a student's information
     @PostMapping("/edit/{id}")

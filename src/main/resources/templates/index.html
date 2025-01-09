@@ -314,6 +314,7 @@
                 <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Mã sinh viên</th>
                     <th>Họ tên</th>
                     <th>Ngày sinh</th>
                     <th>Giới tính</th>
@@ -327,6 +328,7 @@
                 <tbody>
                 <tr th:each="student : ${students}">
                     <td th:text="${student.id}"></td>
+                    <td th:text="${student.maSinhVien}"></td>
                     <td th:text="${student.hoTen}"></td>
                     <td th:text="${student.ngaySinh}"></td>
                     <td th:text="${student.gioiTinh}"></td>

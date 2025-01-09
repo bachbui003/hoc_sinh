@@ -22,6 +22,18 @@ public class Student {
 
     private double diem;
 
+
+    @Column(name = "ma_sinh_vien", nullable = false, unique = true)
+    private String maSinhVien;
+
+    public String getMaSinhVien() {
+        return maSinhVien;
+    }
+
+    public void setMaSinhVien(String maSinhVien) {
+        this.maSinhVien = maSinhVien;
+    }
+
     @ManyToOne
     @JoinColumn(name = "class_id")
     public Classroom classroom;
