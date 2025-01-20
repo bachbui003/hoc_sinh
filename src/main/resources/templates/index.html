@@ -276,6 +276,7 @@
             <li><a href="/students?page=0&size=10">Trang chủ</a></li>
             <li><a href="#">Quản lí điểm sinh viên</a></li>
             <li><a href="#">Quản lí lịch học</a></li>
+            <li><a href="/subjects">Quản lý môn học</a></li> <!-- Added this line -->
             <button id="toggleFilterBtn" class="btn btn-sidebar">Lọc sinh viên</button>
             <!-- Form lọc học sinh -->
             <form th:action="@{/students/filter}" method="get" class="form-inline" id="filterForm">
@@ -306,8 +307,6 @@
                 </form>
             </div>
         </div>
-
-
 
         <div class="table-wrapper">
             <table class="table table-bordered mt-4 table-hover">
@@ -361,11 +360,7 @@
 <script>
     document.getElementById("toggleFilterBtn").addEventListener("click", function() {
         var filterForm = document.getElementById("filterForm");
-        if (filterForm.style.display === "none" || filterForm.style.display === "") {
-            filterForm.style.display = "block";
-        } else {
-            filterForm.style.display = "none";
-        }
+        filterForm.style.display = (filterForm.style.display === "none" || filterForm.style.display === "") ? "block" : "none";
     });
 </script>
 

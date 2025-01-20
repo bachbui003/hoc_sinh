@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa Môn Học</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Sửa Môn Học</h1>
+
+    <form th:action="@{/subjects/edit/{id}(id=${subject.id})}" th:object="${subject}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Tên Môn Học</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

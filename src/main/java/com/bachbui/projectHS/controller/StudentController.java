@@ -148,7 +148,6 @@ public class StudentController {
         if (allStudents.isEmpty()) {
             response.getWriter().write("No data available");
             return;
-
         }
 
         // Sắp xếp danh sách học sinh theo ID (sắp xếp tăng dần)
@@ -161,27 +160,28 @@ public class StudentController {
         // Tạo tiêu đề cho các cột
         Row header = sheet.createRow(0);
         header.createCell(0).setCellValue("ID");
-        header.createCell(1).setCellValue("Họ tên");
-        header.createCell(2).setCellValue("Ngày Sinh");
-        header.createCell(3).setCellValue("Địa Chỉ");
-        header.createCell(4).setCellValue("Lớp Học");
-        header.createCell(5).setCellValue("Môn Học");
-        header.createCell(6).setCellValue("Điểm");
+        header.createCell(1).setCellValue("MSV");
+        header.createCell(2).setCellValue("Họ tên");
+        header.createCell(3).setCellValue("Ngày Sinh");
+        header.createCell(4).setCellValue("Địa Chỉ");
+        header.createCell(5).setCellValue("Lớp Học");
+        header.createCell(6).setCellValue("Môn Học");
+        header.createCell(7).setCellValue("Điểm");
 
         // Thêm dữ liệu học sinh vào sheet
         int rowNum = 1;
         for (Student student : allStudents) {
             Row row = sheet.createRow(rowNum++);
 
-            // Kiểm tra null và xử lý với giá trị mặc định
-            row.createCell(0).setCellValue(student.getId() != null ? student.getId() : 0);  // ID có thể là Long, xử lý với giá trị mặc định là 0
-            row.createCell(1).setCellValue(student.getHoTen() != null ? student.getHoTen() : "N/A");  // Tên học sinh
-            row.createCell(2).setCellValue(student.getNgaySinh() != null ? student.getNgaySinh().toString() : "N/A");  // Ngày sinh, kiểm tra null
-
-            row.createCell(3).setCellValue(student.getDiaChi() != null ? student.getDiaChi() : "N/A");  // Địa chỉ
-            row.createCell(4).setCellValue(student.getClassroom() != null ? student.getClassroom().getName() : "N/A");  // Lớp học
-            row.createCell(5).setCellValue(student.getSubject() != null ? student.getSubject().getName() : "N/A");  // Môn học
-            row.createCell(6).setCellValue(student.getDiem());  // Nếu diem là kiểu nguyên thủy (int, double)
+            // Ghi dữ liệu từng cột, xử lý null nếu cần
+            row.createCell(0).setCellValue(student.getId() != null ? student.getId() : 0);  // ID
+            row.createCell(1).setCellValue(student.getMaSinhVien() != null ? student.getMaSinhVien() : "N/A");  // MSV
+            row.createCell(2).setCellValue(student.getHoTen() != null ? student.getHoTen() : "N/A");  // Họ tên
+            row.createCell(3).setCellValue(student.getNgaySinh() != null ? student.getNgaySinh().toString() : "N/A");  // Ngày sinh
+            row.createCell(4).setCellValue(student.getDiaChi() != null ? student.getDiaChi() : "N/A");  // Địa chỉ
+            row.createCell(5).setCellValue(student.getClassroom() != null ? student.getClassroom().getName() : "N/A");  // Lớp học
+            row.createCell(6).setCellValue(student.getSubject() != null ? student.getSubject().getName() : "N/A");  // Môn học
+            row.createCell(7).setCellValue(student.getDiem());  // Điểm
         }
 
         // Thiết lập kiểu dữ liệu cho response
@@ -192,5 +192,6 @@ public class StudentController {
         workbook.write(response.getOutputStream());
         workbook.close();
     }
+
 
 }

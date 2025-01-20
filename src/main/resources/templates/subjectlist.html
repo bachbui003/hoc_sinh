@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý Môn Học</title>
+</head>
+<body>
+<h1>Danh sách Môn Học</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Tên Môn Học</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="subject : ${subjects}">
+    <td th:text="${subject.id}"></td>
+    <td th:text="${subject.name}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
